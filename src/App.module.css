@@ -1,0 +1,21 @@
+.textWrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+ justify-content: center; 
+  align-items: top; 
+}
+
+.text {
+  font-size: 200px;
+  color: white;
+  text-align: top;
+  text-shadow: 2px 2px #000;
+}
+.text {
+  font-family: 'Roboto', sans-serif;
+  font-size: 200px;
+}

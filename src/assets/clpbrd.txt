@@ -1,0 +1,46 @@
+import React, { Suspense, useRef } from 'react';
+import { Canvas } from '@react-three/fiber';
+import { OrbitControls, PerspectiveCamera, Stars } from '@react-three/drei';
+import Cube from './Cube';
+import ResizeHandler from './ResizeHandler';
+import Starfield from './Starfield';
+import Model from './Model';
+import RandomflowShip from './assets/randomflow-ship.glb';
+import styles from './Scene.module.css';
+
+function CanvasWrapper(props) {
+    const canvasRef = useRef(null);
+
+    return (
+        <Canvas {...props} ref={canvasRef}>
+            {props.children}
+        </Canvas>
+    );
+}
+
+function Scene() {
+    return (
+        <div id="canvas-container" className={styles.sceneContainer}>
+            <div style={{ width: '100vw', height: '100vh' }}>
+                <CanvasWrapper
+                    camera={{ position: [0, 0, 10], fov: 50 }}
+                    style={{ background: 'black' }}
+                >
+                    <Suspense fallback={null}>
+                        <ResizeHandler />
+                        <PerspectiveCamera position={[0, 0, 10]} makeDefault />
+                        <OrbitControls />
+                        <ambientLight />
+                        <pointLight position={[10, 10, 10]} />
+                        <Model scale={[2, 2, 2]} position={[4, 3, 0]} />
+                        <Cube />
+                        <Starfield />
+                    </Suspense>
+                </CanvasWrapper>
+            </div>
+        </div>
+    );
+}
+
+
+export default Scene;
